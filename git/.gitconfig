@@ -1,0 +1,25 @@
+[user]
+	name = Prakash Surya
+[core]
+	editor = vim
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[color]
+	status = auto
+	branch = auto
+	diff = auto
+[alias]
+	b = branch
+	co = commit
+	ch = checkout
+	cp = cherry-pick
+	cl = clean
+	d = diff
+	f = fetch
+	l = log
+	lg = log --graph --pretty=oneline --abbrev-commit --decorate
+	mt = mergetool
+	r = rebase
+	s = status
+	sh = show
