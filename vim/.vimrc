@@ -60,7 +60,8 @@ set backupdir=~/.vim/backup,/tmp,./ " * By default, Vim creates a backup of an
                     "   directories in the order specified, saving to the first
                     "   one available. Directory must already exist, Vim will
                     "   not create it.
-colorscheme wombat256 " * My preferred color scheme for Vim (Needs 256 colors)
+colorscheme wombat256mod " * My preferred color scheme for Vim (Needs 256
+                    "   colors)
 
 " #############################################################################
 " The following places the cursor in it's previous position after opening a
