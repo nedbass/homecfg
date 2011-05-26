@@ -1,28 +1,84 @@
-" To enable 256 color mode themes
-set t_Co=256
+" ################
+" # Start .vimrc #
+" ################
 
-" Easier on the eyes than the default
-" Needs 256 color mode to be enabled
-colorscheme zenburn
+" Much Inspiration came from the following source:
+" * https://wiki.archlinux.org/index.php/Vim
 
-" Enable high contrast colors with zenburn
-let g:zenburn_high_Contrast = 1
+set wrapscan        " * Search wraps around top and bottom of file
+set spell           " * Spell checking
+set noautoindent    " * I'm a big boy, I can do my own indenting
+set tabstop=8       " * Number of spaces in a <Tab>
+set shiftwidth=8    " * Number of spaces for each indent level
+set smarttab        " * When on, <Tab> in front of a line inserts according to
+                    "   'shiftwidth'. 'tabstop' is used in other place. A <BS>
+                    "   will delete a 'shiftwidth' worth of space at the start
+                    "   of the line.
+set showcmd         " * Show (partial) command in status line
+set number          " * Show line numbers
+set showmatch       " * When a bracket is inserted, briefly jump to the
+                    "   matching one. The jump is made only if the match can
+                    "   be seen on the screen. The time to show the match can
+                    "   be set with 'matchtime'.
+set hlsearch        " * When a previous search pattern is available, highlight
+                    "   all matches.
+set incsearch       " * While typing a search command, show immediately where
+                    "   the pattern matches so far.
+set ignorecase      " * Ignore case in search patterns.
+set smartcase       " * Override 'ignorecase' option if search pattern contains
+                    "   upper case characters.
+set textwidth=79    " * Maximum width of text that is being inserted. A longer
+                    "   line will be broken at whitespace to get this width.
+set ruler           " * Show the line and column number of the cursor position
+set background=dark " * When set to "dark", Vim will try to use colors that
+                    "   look good on a dark background. "light" can be used for
+                    "   the opposite effect. Any other value is illegal.
+set mouse=a         " * Enable the use of the mouse
+set t_Co=256        " * To enable the use of color schemes with 256 colors
+set nocscopeverbose " * Quiets errors which crop up when using Vim cscope key
+                    "   bindings (cscope_maps.vim)
+syntax on           " * Turn on syntax coloring
+set wrap            " * Changes the way text is displayed, but does not change
+                    "   the text itself.
+set formatoptions=c,q,r,t " * Sequence of letters which describes how
+                    "   automatic formatting is to be done.
+                    "
+                    "   letter   meaning when present in 'formatoptions'
+                    "   -----    ---------------------------------------
+                    "   * c      * Auto-wrap comments using 'textwidth',
+                    "              inserting the current comment leader
+                    "              automatically.
+                    "   * q      * Allow formatting of comments with "gq".
+                    "   * r      * Automatically insert the current comment
+                    "              leader after hitting <Enter> in Insert mode.
+                    "   * t      * Auto-wrap text using 'textwidth' (does not
+                    "              apply to comments).
+set backupdir=~/.vim/backup,/tmp,./ " * By default, Vim creates a backup of an
+                    "   edited file in the same directory as the file called
+                    "   filename~. To prevent clutter, many users tell Vim to
+                    "   use a backup directory. Will try to save to the given
+                    "   directories in the order specified, saving to the first
+                    "   one available. Directory must already exist, Vim will
+                    "   not create it.
+colorscheme wombat256 " * My preferred color scheme for Vim (Needs 256 colors)
 
-"
-" When trying to use cscope with the cscope_maps.vim key bindings,
-" I kept receiving the following error:
-" 	Error detected while processing $HOME/.vim/plugin/cscope_maps.vim:
-" 	line   42:
-" 	E568: duplicate cscope database not added
-" 	Press ENTER or type command to continue
-" Thus with the help of google I came across this solution.
-" If this variable is set the error no longer occurs, not sure why this
-" suppresses the error.
-"
-" See Also:
-" http://blogs.sun.com/natarajan/entry/avoiding_duplicate_cscope_database_error
-"
-set nocscopeverbose 
+" #############################################################################
+" The following places the cursor in it's previous position after opening a
+" file.
+function! ResetCursor()
+	if line("'\"") > 1 && line("'\"") <= line("$")
+		normal! g'"
+		return 1
+	endif
+endfunction
+
+if has("autocmd")
+	augroup resetCursor
+		autocmd!
+		au BufReadPost * call ResetCursor()
+	augroup END
+endif
+" #############################################################################
 
 " To easily comment/uncomment visually selected blocks of c code
 "
@@ -34,22 +90,6 @@ map ,uc :s#^//##<CR> :set nohlsearch<CR>
 map ,cs :s/^/#/<CR> :set nohlsearch<CR>
 " Mnemonic: Uncomment Shell
 map ,us :s/^#//<CR> :set nohlsearch<CR>
-
-
-" Turn on line numbering
-set number
-
-" Minimum number of columns to use for line numbers
-set nuw=4
-
-" Turn on syntax coloring
-syntax on
-
-" Turn on word wrap
-set wrap
-
-" Tabs are 8 cols
-set tabstop=8
 
 " Set the font (Courier New 12pt)
 set guifont=Courier\ New:h12
@@ -73,12 +113,6 @@ if has("autocmd")
 "	autocmd BufWinLeave * call clearmatches()
 endif
 
-" No automatic indenting
-set noautoindent
-
-" Turn on spell checking
-set spell
-
 " Highlight lines longer than 80 cols in length
 " See also:
 " http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns/3765575#3765575
@@ -87,3 +121,7 @@ if exists('+colorcolumn')
 else
 	autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
+
+" ##############
+" # End .vimrc #
+" ##############
