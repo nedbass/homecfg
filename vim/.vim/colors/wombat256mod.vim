@@ -60,8 +60,8 @@ hi DiffChange					ctermbg=237										guibg=#382a37
 "hi Question
 "hi Scrollbar
 "hi SignColumn
-"hi SpellBad
-"hi SpellCap
+hi SpellBad ctermfg=196		ctermbg=236		cterm=none		guifg=#ff2026	guibg=#3a3a3a	gui=none " See: ErrorMsg
+hi SpellCap ctermfg=177		ctermbg=241		cterm=none		guifg=#d787ff	guibg=#636066	gui=none " See: Search
 "hi SpellLocal
 "hi SpellRare
 "hi TabLine
