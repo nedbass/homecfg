@@ -17,10 +17,12 @@ alias lr='ls --recursive'
 alias ll='ls -l'
 alias la='ll --almost-all'
 alias lm='la | more'
+alias lg='la | grep $1' # Requires an argument
 
 # New Commands
 alias du1='du --max-depth=1'
 alias hist='history | grep $1' # Requires an argument
+alias openports='netstat --all --numeric --programs --inet'
 
 # Misc Shortcut Commands
 alias s='ssh'
