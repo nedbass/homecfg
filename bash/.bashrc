@@ -4,6 +4,7 @@
 
 # Much inspiration came from the following sources:
 # * https://wiki.archlinux.org/index.php/Core_Utilities
+# * https://wiki.archlinux.org/index.php/Bash
 
 # Set readline's key binding to vi mode (it defaults to emacs..)
 set -o vi
@@ -21,6 +22,7 @@ PATH="$PATH:$HOME/bin"
 for file in `ls $HOME/.bashrc.d/*.sh`; do
 	[ -r $file ] && . $file
 done
+unset file
 
 ###############
 # End .bashrc #
