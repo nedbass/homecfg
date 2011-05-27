@@ -40,6 +40,9 @@ set nocscopeverbose " * Quiets errors which crop up when using Vim cscope key
 syntax on           " * Turn on syntax coloring
 set wrap            " * Changes the way text is displayed, but does not change
                     "   the text itself.
+set list            " * Turn on printing of invisible chars
+set listchars=tab:>-,trail:! " * Customize the characters used to print the
+                    "   invisible chars
 set formatoptions=c,q,r,t " * Sequence of letters which describes how
                     "   automatic formatting is to be done.
                     "
@@ -64,6 +67,14 @@ colorscheme wombat256mod " * My preferred color scheme for Vim (Needs 256
                     "   colors)
 
 " #############################################################################
+" The following is for commenting/uncommenting blocks of code more easily
+map ,cc :s#^#//#<CR> :set nohlsearch<CR> " * Mnemonic: Comment C
+map ,uc :s#^//##<CR> :set nohlsearch<CR> " * Mnemonic: Uncomment C
+map ,cs :s/^/#/<CR> :set nohlsearch<CR>  " * Mnemonic: Comment Shell
+map ,us :s/^#//<CR> :set nohlsearch<CR>  " * Mnemonic: Uncomment Shell
+" #############################################################################
+
+" #############################################################################
 " The following places the cursor in it's previous position after opening a
 " file.
 function! ResetCursor()
@@ -81,25 +92,8 @@ if has("autocmd")
 endif
 " #############################################################################
 
-" To easily comment/uncomment visually selected blocks of c code
-"
-" Mnemonic: Comment C
-map ,cc :s#^#//#<CR> :set nohlsearch<CR>
-" Mnemonic: Uncomment C
-map ,uc :s#^//##<CR> :set nohlsearch<CR>
-" Mnemonic: Comment Shell
-map ,cs :s/^/#/<CR> :set nohlsearch<CR>
-" Mnemonic: Uncomment Shell
-map ,us :s/^#//<CR> :set nohlsearch<CR>
-
 " Set the font (Courier New 12pt)
 set guifont=Courier\ New:h12
-
-" Turn on invisible chars
-set invlist
-
-" Customize the invisible chars
-set listchars=tab:>-,trail:!
 
 " Only do this part when compiled with support for autocommands
 " If autocommands is supported, this will highlight trailing
