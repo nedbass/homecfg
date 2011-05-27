@@ -9,7 +9,7 @@ source $HOME/.bashrc
 
 # For a bit of fun.. If the programs cowsay and fortune are installed, use
 # these programs to print some ascii art on login.
-if [ -n `type -P cowsay` -a -n `type -P fortune` ]; then
+if [ -n "$(type -P cowsay)" -a -n "$(type -P fortune)" ]; then
 	# grep removes the initial line consisting of the directory path
 	# containing the files.
 	files=(`cowsay -l | grep -v :`) # Create array with list of cowfiles
