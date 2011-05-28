@@ -10,10 +10,6 @@ set spell           " * Spell checking
 set noautoindent    " * I'm a big boy, I can do my own indenting
 set tabstop=8       " * Number of spaces in a <Tab>
 set shiftwidth=8    " * Number of spaces for each indent level
-set smarttab        " * When on, <Tab> in front of a line inserts according to
-                    "   'shiftwidth'. 'tabstop' is used in other place. A <BS>
-                    "   will delete a 'shiftwidth' worth of space at the start
-                    "   of the line.
 set showcmd         " * Show (partial) command in status line
 set number          " * Show line numbers
 set showmatch       " * When a bracket is inserted, briefly jump to the
@@ -43,8 +39,8 @@ set wrap            " * Changes the way text is displayed, but does not change
 set list            " * Turn on printing of invisible chars
 set listchars=tab:>-,trail:! " * Customize the characters used to print the
                     "   invisible chars
-set formatoptions=c,q,r,t " * Sequence of letters which describes how
-                    "   automatic formatting is to be done.
+set formatoptions=cqt " * Sequence of letters which describes how automatic
+                    "   formatting is to be done.
                     "
                     "   letter   meaning when present in 'formatoptions'
                     "   -----    ---------------------------------------
@@ -52,8 +48,6 @@ set formatoptions=c,q,r,t " * Sequence of letters which describes how
                     "              inserting the current comment leader
                     "              automatically.
                     "   * q      * Allow formatting of comments with "gq".
-                    "   * r      * Automatically insert the current comment
-                    "              leader after hitting <Enter> in Insert mode.
                     "   * t      * Auto-wrap text using 'textwidth' (does not
                     "              apply to comments).
 set backupdir=~/.vim/backup,/tmp,./ " * By default, Vim creates a backup of an
