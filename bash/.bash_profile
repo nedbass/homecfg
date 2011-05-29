@@ -8,8 +8,9 @@
 source $HOME/.bashrc
 
 # For a bit of fun.. If the programs cowsay and fortune are installed, use
-# these programs to print some ascii art on login.
-if [ -n "$(type -P cowsay)" -a -n "$(type -P fortune)" ]; then
+# these programs to print some ascii art on login. But, only do this if it's
+# an interactive session; the check on $PS1 ensures this.
+if [ -n "$PS1" -a -n "$(type -P cowsay)" -a -n "$(type -P fortune)" ]; then
 	# grep removes the initial line consisting of the directory path
 	# containing the files.
 	files=(`cowsay -l | grep -v :`) # Create array with list of cowfiles
