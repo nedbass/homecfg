@@ -29,6 +29,7 @@ alias s='ssh'
 alias c='clear'
 alias g='git'
 alias am='alsamixer'
+alias pd='pushd'
 
 ###############
 # End Aliases #
