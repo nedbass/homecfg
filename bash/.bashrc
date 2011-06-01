@@ -13,13 +13,12 @@ PATH="$PATH:$HOME/bin"
 
 # * Source the bash configuration files in $HOME/.bashrc.d
 # * Files in this directory must have '.sh' extension to be sourced
-# * Currently, there is no guarantee regarding the order in which
-#   these files will be sourced. Thus DO NOT write code which relies
-#   on the order which the files are sourced. Doing so is bound to
-#   cause portability issues. Issue can easily be resolved using a
-#   two digit prefix to the filenames, and sorting the list of files;
-#   but as of now this extra complexity is completely unnecessary.
-for file in `ls $HOME/.bashrc.d/*.sh`; do
+# * Files must also be prefixed by a two digit number. This number
+#   specifies the order in which the files are sourced (lower numbered
+#   prefixes being sourced first).
+# * If a file does not conform to the above constraints, the results are
+#   undefined.
+for file in `ls $HOME/.bashrc.d/*.sh | sort -n`; do
 	[ -r $file ] && . $file
 done
 unset file
