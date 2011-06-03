@@ -22,47 +22,5 @@ auto_view text/html       # * This is used in conjunction with a mailcap entry
                           #   Associated mailcap entires to accomplish this:
                           #   * text/html; lynx -dump -force_html %s; needsterminal; copiousoutput;
                           #   * text/html; elinks -dump -dump-charset iso-8859-15 -default-mime-type text/html %s; needsterminal; copiousoutput;
-macro index A "s=archive<enter>" # * When in index mode (viewing the list of
-                          #   subject lines) pressing the 'A' key saves the
-                          #   selected email into the archive folder
-macro pager A "s=archive<enter>" # * When in pager mode (viewing the body of an
-                          #   email message) pressing the 'A' key saves the
-                          #   email being viewed into the archive folder
-###############################################################################
-# * The following macros allow for quickly and easily adjusting the
-#   pager_index_lines values.
-# * By pressing <Esc> followed by a single digit number the pager_index_lines
-#   can be increased or decreased to cause the current message to take up more
-#   or less screen real estate (i.e. show more or less context in relation to
-#   the other messages).
-# * Just to reiterate if it wasn't caught in the previous point, \e corresponds
-#   to the <Esc> key. Thus \e0 corresponds to pressing <Esc> followed by the 1
-#   key (NOT SIMULTANEOUS KEY PRESSES).
-macro pager "\e0" "<enter-command>set pager_index_lines=00<enter>"
-macro pager "\e1" "<enter-command>set pager_index_lines=06<enter>"
-macro pager "\e2" "<enter-command>set pager_index_lines=11<enter>"
-macro pager "\e3" "<enter-command>set pager_index_lines=16<enter>"
-macro pager "\e4" "<enter-command>set pager_index_lines=21<enter>"
-macro pager "\e5" "<enter-command>set pager_index_lines=26<enter>"
-macro pager "\e6" "<enter-command>set pager_index_lines=31<enter>"
-macro pager "\e7" "<enter-command>set pager_index_lines=36<enter>"
-macro pager "\e8" "<enter-command>set pager_index_lines=41<enter>"
-macro pager "\e9" "<enter-command>set pager_index_lines=46<enter>"
-###############################################################################
-
-###############################################################################
-# * The following is to correctly format and show the email headers that I care
-#   about. Without the following, mutt will display ALL headers for an email,
-#   which can be quite verbose, and distracts from the actual message.
-ignore *          # * Initial don't show ANY headers. I will selectively pick
-                  #   out the ones I want to see with unignore.
-unignore From:    # * Show who the message is from
-unignore Subject: # * Show the subject of the message
-unignore To:      # * Show who the message is addressed to
-unignore CC:      # * Show who is CC'd on the message
-unignore BCC:     # * Show who is BCC'd on the message
-unignore Date:    # * Show the date given on the message
-hdr_order From: Subject: To: CC: BCC: Date: # * Specify the order in which the
-                  #   headers are displayed to ensure it stays consistent
-                  #   between different messages.
-###############################################################################
+source "$HOME/.muttsh|"   # * Include the output of the .muttsh file
+                          # * NOTE: This file must be executable

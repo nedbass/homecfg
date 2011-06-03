@@ -1,0 +1,16 @@
+###############################################################################
+# * The following is to correctly format and show the email headers that I care
+#   about. Without the following, mutt will display ALL headers for an email,
+#   which can be quite verbose, and distracts from the actual message.
+ignore *          # * Initial don't show ANY headers. I will selectively pick
+                  #   out the ones I want to see with unignore.
+unignore From:    # * Show who the message is from
+unignore Subject: # * Show the subject of the message
+unignore To:      # * Show who the message is addressed to
+unignore CC:      # * Show who is CC'd on the message
+unignore BCC:     # * Show who is BCC'd on the message
+unignore Date:    # * Show the date given on the message
+hdr_order From: Subject: To: CC: BCC: Date: # * Specify the order in which the
+                  #   headers are displayed to ensure it stays consistent
+                  #   between different messages.
+###############################################################################
