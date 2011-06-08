@@ -2,7 +2,7 @@ xrdb -merge ~/.Xresources
 
 while true; do
 	batt=$(acpi -b | awk '{ print $3, $4 }' | tr -d ',')
-	date=$(date +"%a %b %d %r")
+	date=$(date +"%a %b %d %T")
 	xsetroot -name "$batt $date"
 	sleep 1s
 done &
