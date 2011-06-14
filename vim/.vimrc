@@ -29,7 +29,6 @@ set ruler           " * Show the line and column number of the cursor position
 set background=dark " * When set to "dark", Vim will try to use colors that
                     "   look good on a dark background. "light" can be used for
                     "   the opposite effect. Any other value is illegal.
-set mouse=a         " * Enable the use of the mouse
 set t_Co=256        " * To enable the use of color schemes with 256 colors
 set nocscopeverbose " * Quiets errors which crop up when using Vim cscope key
                     "   bindings (cscope_maps.vim)
