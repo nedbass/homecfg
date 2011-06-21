@@ -16,6 +16,10 @@ export GREP_COLOR='1;33' # Set the color to use when highlighting the matched
                          # part of grep's output (1;33 ~> yellow)
 export LESS='-R'
 
+export HISTTIMEFORMAT='%F %T ' # Show the time and date in the history file
+                               # %F ~> 2011 - 06 - 21
+                               # %T ~> 10 : 21 : 00
+
 ###########################
 # End Environment Exports #
 ###########################
