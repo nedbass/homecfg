@@ -1,0 +1,6 @@
+#! /bin/sh
+
+DIR='/usr/include/asm-generic'
+for file in "$DIR/errno-base.h" "$DIR/errno.h"; do
+	[ -r $file ] && cat $file | grep '#define' | sed 's/#define\s*//'
+done
