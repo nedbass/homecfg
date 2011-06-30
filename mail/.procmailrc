@@ -1,0 +1,152 @@
+MAILDIR=$HOME/mail
+DEFAULT=$MAILDIR/mbox
+LOGFILE=$MAILDIR/procmail.log
+
+# Since procmail 'and's the conditions together for a given recipe, we will
+# use "Condition Scoring" to 'or' the conditions together. This provides the
+# "best" solution to the problem as was taken from this web page:
+# http://www.perlcode.org/tutorials/procmail/proctut/proctip2.pod
+#
+# What is "Condition Scoring"
+#
+# Condition Scoring
+#
+# The procmailsc(5) manpage introduces us to another way to effectively "or"
+# conditions together. By assigning a "score" to each condition as a mail message
+# is scanned, we can determine if any of the conditions were met:
+#
+#     :0:
+#     * 1^0 ^Subject:.*results
+#     * 1^0 ^Subject:.*mlm
+#     /var/mail/temp
+#
+# The action line will trigger only if at least one of the conditions was
+# satisfied. Recipes with a positive score once the action line is reached will
+# cause the action line to trigger (we can also use negative scoring, according
+# to procmailsc(5)).
+#
+# A more efficient way to do this is to use the procmail "supremum" score, which
+# is 2147483647 (that's (2^31)-1). procmailsc(5) tells us that once a recipe has
+# hit this score (or higher), subsequent conditions will be skipped. We can use
+# this to our advantage to achieve efficient and readable recipes. Often,
+# however, because 2147483647 is a little hard to remember, we simply count
+# backwards from 9 and use this as our supremum score: 9876543210.
+#
+#     :0:
+#     * 9876543210^0 ^Subject:.*results
+#     * 9876543210^0 ^Subject:.*mlm
+#     /var/mail/temp
+#
+# Or, we can use a variable to make our recipe look tidier:
+#
+#     SPR=9876543210
+#     :0:
+#     * $ $SPR^0 ^Subject:.*results
+#     * $ $SPR^0 ^Subject:.*mlm
+#     /var/mail/temp
+#
+# The leading dollar sign after the asterisk turns "$SPR" into 9876543210. Using
+# the supremum score is much more efficient than 1^0 because with 1^0, procmail
+# continues to try each condition, even if the first one has been met. With the
+# supremum score, procmail immediately skips the remaining conditions and
+# triggers the action line. This can make a big difference when we have dozens of
+# conditions to check.
+
+SPR=987654321
+
+:0:
+* ^From: "bugzilla-daemon@chaos.llnl.gov"
+chaos-bugzilla
+
+:0:
+* ^To: .* <chaos-dev@lists.llnl.gov>
+chaos-dev
+
+:0:
+* $ $SPR^0 ^list-id: <lustre.chaos.github.com>
+* $ $SPR^0 ^list-id: <lmt.chaos.github.com>
+chaos-github
+
+:0:
+* ^From: Git <git@eris.llnl.gov>
+eris-git
+
+:0:
+* ^From: CR/LF BuildBot <buildbot\+cartman@eris.llnl.gov>
+eris-buildbot
+
+:0:
+* From: ".* \(JIRA\)" <jira@whamcloud.com>
+jira-whamcloud
+
+:0:
+* ^From: LITE <litesys@llnl.gov>
+lite
+
+:0:
+* ^From: "majordomo@lists.llnl.gov" <majordomo@lists.llnl.gov>
+llnl-majordomo
+
+:0:
+* ^x-beenthere: lustre-21@googlegroups.com
+lustre-21
+
+:0:
+* ^x-beenthere: lustre-devel@lists.lustre.org
+lustre-devel
+
+:0:
+* $ $SPR^0 ^x-beenthere: lustre-discuss@lists.lustre.org
+* $ $SPR^0 ^x-beenthere: wc-discuss@whamcloud.com
+lustre-discuss
+
+:0:
+* ^From: Newsline <newsonline@llnl.gov>
+newsline
+
+:0:
+* ^From: LC Hotline <lc-hotline@llnl.gov>
+* ^To: OCF Status List <ocf-status@llnl.gov>
+* ^Subject: OCF SCHEDULED EVENTS FOR THE WEEK OF
+ocf_scheduled_events
+
+:0:
+* ^From: ".* \(Code Review\)" <.*@whamcloud.com>
+review-whamcloud
+
+:0:
+* ^From owner-slurm-trilab@lists.llnl.gov
+slurm-trilab
+
+:0:
+* ^From: lager1 <lager1@lucky.llnl.gov>
+* ^Subject: periodic announcement
+spam
+
+:0:
+* ^From: Norman Morse <Norman.Morse@OpenSFS.org>
+* ^Subject:  OpenSFS Lustre Community Telecon
+spam
+
+:0:
+* ^From: "Britt, Julia M." <britt5@llnl.gov>
+* ^Subject: TEIMS Release and Database Downtime
+spam
+
+:0:
+* ^From: "Britt, Julia M." <britt5@llnl.gov>
+* ^Subject: TEIMS Tools and Database Now Available
+spam
+
+:0:
+* ^From: The Booth Company <support@boothco.com>
+* ^Subject: Reminder: Anh Quach has asked for your feedback
+spam
+
+:0:
+* ^x-beenthere: zfs-discuss@zfsonlinux.org
+zfs-discuss
+
+:0:
+* ^x-beenthere: zfs-devel@zfsonlinux.org
+zfs-devel
