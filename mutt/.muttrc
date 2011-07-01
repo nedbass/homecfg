@@ -24,5 +24,10 @@ auto_view text/html       # * This is used in conjunction with a mailcap entry
                           #   * text/html; elinks -dump -dump-charset iso-8859-15 -default-mime-type text/html %s; needsterminal; copiousoutput;
 set signature="$HOME/.signature" # * Specifies the filename of your signature,
                           #   which is appended to all outgoing messages.
+set confirmappend=no      # * When set, Mutt will prompt for confirmation when
+                          #   appending messages to an existing mailbox.
+set confirmcreate=yes     # * When set, Mutt will prompt for confirmation when
+                          #   saving messages to a mailbox which does not yet
+                          #   exist before creating it.
 source "$HOME/.muttsh|"   # * Include the output of the .muttsh file
                           # * NOTE: This file must be executable
