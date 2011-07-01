@@ -4,6 +4,14 @@ macro index A "s=archive<enter>" # * When in index mode (viewing the list of
 macro pager A "s=archive<enter>" # * When in pager mode (viewing the body of an
                           #   email message) pressing the 'A' key saves the
                           #   email being viewed into the archive folder
+macro index S "s<enter>"  # * When in index mode (viewing the list of
+                          #   subject lines) pressing the 'S' key saves the
+                          #   selected email into the default folder for that
+                          #   message
+macro pager S "s<enter>"  # * When in pager mode (viewing the body of an
+                          #   email message) pressing the 'S' key saves the
+                          #   selected email into the default folder for that
+                          #   message
 ###############################################################################
 # * The following macros allow for quickly and easily adjusting the
 #   pager_index_lines values.
