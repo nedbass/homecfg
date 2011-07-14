@@ -1,0 +1,12 @@
+autodetach on             # * Detach screen session upon hangup
+                          # * Saves all your running programs until they are
+                          #   resumed with a 'screen -r' command.
+                          # * When turned off, a hangup signal will terminate
+                          #   screen and all the processes it contains.
+deflog on                 # * Same as the log command except that the default
+                          #   setting for new windows is changed.
+                          # * Write output of window to the logfile.
+                          # * The session log is appended to the previous
+                          #   contents of the file if it already exists.
+logfile "$HOME/log/screen/%Y-%m-%d.%n.log" # * Defines the name of the logfiles
+startup_message off       # * Do no display the copyright message on startup.
