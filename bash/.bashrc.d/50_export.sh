@@ -29,6 +29,13 @@ export HISTTIMEFORMAT='%F %T ' # Show the time and date in the history file
                                # %F ~> 2011 - 06 - 21
                                # %T ~> 10 : 21 : 00
 
+# * Add directories to $PATH which I use as a place to install programs
+# * Brief Descriptions:
+#    * $HOME/bin - Usually small personal scripts and programs
+#    * $HOME/prefix/bin - Manually compiled and installed programs
+[ -d "$HOME/bin" ]        && export PATH="$HOME/bin:$PATH"
+[ -d "$HOME/prefix/bin" ] && export PATH="$HOME/prefix/bin:$PATH"
+
 ###########################
 # End Environment Exports #
 ###########################
