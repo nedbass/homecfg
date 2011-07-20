@@ -1,0 +1,13 @@
+# Default GitHub user (Prakash-Surya)
+# Usage: git clone git@github:Prakash-Surya/repo.git
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa.github.Prakash-Surya
+
+# Other GitHub user (dunecn)
+# Usage: git clone git@github-dunecn:dunecn/repo.git
+Host github-dunecn
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa.github.dunecn
