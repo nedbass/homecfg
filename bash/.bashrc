@@ -9,8 +9,6 @@
 # Set readline's key binding to vi mode (it defaults to emacs..)
 set -o vi
 
-PATH="$PATH:$HOME/bin"
-
 # * Source the bash configuration files in $HOME/.bashrc.d
 # * Files in this directory must have a '.sh' or a '.bash' extension to be
 #   sourced
