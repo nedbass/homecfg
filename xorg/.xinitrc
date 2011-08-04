@@ -1,4 +1,5 @@
 xrdb -merge ~/.Xresources
+xset b off
 
 while true; do
 	batt=$(acpi -b | awk '{ print $3, $4 }' | tr -d ',')
