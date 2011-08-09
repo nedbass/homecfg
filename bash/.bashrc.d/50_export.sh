@@ -29,6 +29,8 @@ export HISTTIMEFORMAT='%F %T ' # Show the time and date in the history file
                                # %F ~> 2011 - 06 - 21
                                # %T ~> 10 : 21 : 00
 
+export EDITOR='/usr/bin/vim' # I like vim :)
+
 # * Add directories to $PATH which I use as a place to install programs
 # * Brief Descriptions:
 #    * $HOME/bin - Usually small personal scripts and programs
