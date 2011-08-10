@@ -1,3 +1,8 @@
+# Enable the sharing of multiple sessions over a single network connection
+Host *
+  ControlPath ~/.ssh/master-%r@%h:%p
+  ControlMaster auto
+
 # Default GitHub user (Prakash-Surya)
 # Usage: git clone git@github:Prakash-Surya/repo.git
 Host github.com
