@@ -23,7 +23,7 @@ set incsearch       " * While typing a search command, show immediately where
 set ignorecase      " * Ignore case in search patterns.
 set smartcase       " * Override 'ignorecase' option if search pattern contains
                     "   upper case characters.
-set textwidth=79    " * Maximum width of text that is being inserted. A longer
+set textwidth=72    " * Maximum width of text that is being inserted. A longer
                     "   line will be broken at whitespace to get this width.
 set ruler           " * Show the line and column number of the cursor position
 set background=dark " * When set to "dark", Vim will try to use colors that
