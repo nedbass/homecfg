@@ -1,0 +1,53 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+# Global variables
+my $SAVE_DIR = "$ENV{HOME}/notes/calcurse";
+my $CALCURSE_DIR = "$ENV{HOME}/.calcurse";
+
+main();
+
+sub main {
+	while (<STDIN>) {
+		chomp;
+
+		my $re = '(\[-?\d\])(>\w{6})? (.*)';
+		die <<EOF unless /$re/;
+***
+*** ERROR: Regex did not match string!
+*** String: '$_' Regex: '$re'
+***
+EOF
+
+		my $note = scrub_note($2);
+		my $desc = scrub_desc($3);
+
+		die <<EOF unless -d $SAVE_DIR;
+***
+*** ERROR: $SAVE_DIR is not a directory!
+***
+EOF
+
+		my $cmd = "cp $CALCURSE_DIR/notes/$note $SAVE_DIR/$desc";
+		system($cmd) == 0 or die <<EOF;
+***
+*** ERROR: $cmd failed!
+***
+EOF
+	}
+}
+
+sub scrub_note {
+	my $note = shift;
+	$note =~ s/>//;
+	return $note;
+}
+
+sub scrub_desc {
+	my $desc = shift;
+	$desc =~ s/ - /-/g;
+	$desc =~ s/ /_/g;
+	return "$desc.txt";
+}
