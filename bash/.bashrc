@@ -9,6 +9,10 @@
 # Set readline's key binding to vi mode (it defaults to emacs..)
 set -o vi
 
+# Disable flow control. When screen locks up when 'Ctrl-a s' is entered
+# during an ssh session if flow control is enabled.
+stty -ixon -ixoff
+
 # * Source the bash configuration files in $HOME/.bashrc.d
 # * Files in this directory must have a '.sh' or a '.bash' extension to be
 #   sourced
