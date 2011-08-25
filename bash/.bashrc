@@ -10,8 +10,9 @@
 set -o vi
 
 # Disable flow control. When screen locks up when 'Ctrl-a s' is entered
-# during an ssh session if flow control is enabled.
-stty -ixon -ixoff
+# during an ssh session if flow control is enabled. The test ensures it
+# is only run if stdin is a terminal
+[ -t 0 ] && stty -ixon -ixoff
 
 # * Source the bash configuration files in $HOME/.bashrc.d
 # * Files in this directory must have a '.sh' or a '.bash' extension to be
