@@ -105,8 +105,8 @@ endif
 " See also:
 " http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns/3765575#3765575
 if exists('+colorcolumn')
-	set colorcolumn=80
-else
+	 set colorcolumn=80
+elseif exists('*matchadd')
 	autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
