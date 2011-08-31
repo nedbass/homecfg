@@ -1,4 +1,5 @@
 FILES=	.fetchmailrc \
+	.muttrc \
 	.procmailrc
 
 install:
