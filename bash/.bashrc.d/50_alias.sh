@@ -2,34 +2,31 @@
 # Start Aliases #
 #################
 
+unalias -a
+
+alias realias=". $HOME/.bashrc.d/50_alias.sh"
+
 # Modified Commands
-alias df='df --human-readable'
-alias du='du --human-readable'
 alias grep='grep --color=auto'
 alias mkdir='mkdir --parents --verbose'
-alias more='less'
-alias ping='ping -c 5'
-alias vi='vim'
-
-# ls Specific Commands
+alias emacs="emacs -nw"
+alias mv='mv -i'
 alias ls='ls --human-readable --classify --color=always'
-alias lr='ls --recursive'
-alias ll='ls -l'
-alias la='ll --almost-all'
-alias lm='la | more'
-alias lg='la | grep $1' # Requires an argument
+alias less="less -MXR"
+alias view="vim -R"
+
 
 # New Commands
-alias du1='du --max-depth=1'
-alias hist='history | grep $1' # Requires an argument
 alias openports='netstat --all --numeric --programs --inet'
+alias null='cat > /dev/null'
+alias gitl="git log --no-merges"
+alias gitb="git branch -a"
+# Pick Random element from a stream.
+alias pr="perl -ne 'if (!int rand \$s++) {\$n = \$_} END {print \$n}'"
 
 # Misc Shortcut Commands
 alias s='ssh'
-alias c='clear'
 alias g='git'
-alias am='alsamixer'
-alias pd='pushd'
 
 ###############
 # End Aliases #
