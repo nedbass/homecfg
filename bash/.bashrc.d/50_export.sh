@@ -36,7 +36,13 @@ export EDITOR='/usr/bin/vim' # I like vim :)
 #    * $HOME/bin - Usually small personal scripts and programs
 #    * $HOME/prefix/bin - Manually compiled and installed programs
 [ -d "$HOME/bin" ]        && export PATH="$HOME/bin:$PATH"
-[ -d "$HOME/prefix/bin" ] && export PATH="$HOME/prefix/bin:$PATH"
+
+# Ignore duplicate commands and those with leading whitespace.
+HISTCONTROL=ignoreboth
+# Max number of lines in history file.
+HISTFILESIZE=100000
+# Max number of commands.
+HISTSIZE=100000
 
 ###########################
 # End Environment Exports #
