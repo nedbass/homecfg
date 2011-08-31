@@ -23,6 +23,7 @@ alias gitl="git log --no-merges"
 alias gitb="git branch -a"
 # Pick Random element from a stream.
 alias pr="perl -ne 'if (!int rand \$s++) {\$n = \$_} END {print \$n}'"
+alias findc="find $1 -name '*.[ch]'"
 
 # Misc Shortcut Commands
 alias s='ssh'

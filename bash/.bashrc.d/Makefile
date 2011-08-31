@@ -1,6 +1,7 @@
 FILES=	00_colors.sh \
 	30_git-completion.bash \
 	50_alias.sh \
+	50_functions.sh \
 	50_complete.sh \
 	50_export.sh
 
