@@ -1,0 +1,46 @@
+PATH=/bin:/usr/bin:/usr/bin
+MAILDIR=$HOME/Mail
+DEFAULT=$MAILDIR/mbox   #completely optional
+LOGFILE=$MAILDIR/procmail.log   #recommended
+
+:0
+{
+ :0 Whc: .msgid.lock    # w produces (non-fatal) error msg
+ | formail -D 32768 .msgid.cache
+}
+
+:0:
+* ^(From|To):.*root@.*(ucllnl\.org|llnl\.gov)
+rootmail
+
+:0:
+* ^(Sender|From): "?owner-\/[^@]+
+$MATCH
+
+:0:
+* ^x-beenthere: lustre-devel@lists.lustre.org
+lustre-org-devel
+
+:0:
+* ^x-beenthere: lustre-discuss@lists.lustre.org
+lustre-discuss
+
+:0:
+* ^x-beenthere: wc-discuss@whamcloud.com
+wc-discuss
+
+:0:
+* ^x-beenthere: lustre-community@lists.lustre.org
+lustre-community
+
+:0:
+* ^x-beenthere: zfs-discuss@zfsonlinux.org
+zfs-discuss
+
+:0:
+* ^x-beenthere: zfs-devel@zfsonlinux.org
+zfs-devel
+
+:0:
+* ^x-beenthere: lustre-21@googlegroups.com
+lustre-21
