@@ -1,0 +1,120 @@
+set spoolfile="=null"
+set signature="~/.signature"
+set record="/home/bass6/Mail/sent"
+set editor="/usr/bin/vim"
+set metoo=no
+set sort=threads
+set abort_unmodified=yes
+set hostname="llnl.gov"
+set beep=no
+set pager_index_lines=6
+set sendmail="/usr/sbin/sendmail -f bass6@llnl.gov"
+set from="bass6@llnl.gov"
+set askcc=yes
+
+alias pam Pam Hamilton <pgh@llnl.gov>
+alias pgh Pam Hamilton <pgh@llnl.gov>
+alias py Pythagoras Watson <py@llnl.gov>
+
+#auto_view text/html
+
+color  hdrdefault      green           black
+color  header          brightyellow    black   "^from:"
+mono   header          bold                    "^from:"
+color  header          brightyellow    black   "^subject:"
+mono   header          bold                    "^subject:"
+color  quoted          green           black
+color  signature       brightred       black
+color  indicator       brightyellow    red
+color  error           brightred       black
+mono   error           bold
+color  status          brightwhite     blue
+color  tree            brightred   black
+color  index		green	black	"From:.*<alaw@locohost.com>"
+color  tilde           brightmagenta   black
+# URL highlighting with the same regexp as urlview.
+color  body            brightyellow    black    (((ht|f)tps?)|mailto):(//)?[^\
+"\t]*|www\.[-a-z0-9.]+)[^\ .,;\t>">]
+mono   body            bold                     (((ht|f)tps?)|mailto):(//)?[^\
+"\t]*|www\.[-a-z0-9.]+)[^\ .,;\t>">]
+color  body            brightmagenta   black   "[-a-z_0-9.]+@[-a-z_0-9.]+"
+mono   body            bold                    "[-a-z_0-9.]+@[-a-z_0-9.]+"
+color  body            brightyellow    black   "^Good signature"
+mono   body            bold                    "^Good signature"
+color  body            brightwhite     red     "^Bad signature from.*"
+mono   body            bold                    "^Bad signature from.*"
+color normal brightwhite black
+
+macro pager "\e1"    "<enter-command>set pager_index_lines=5\n" # Change PIL size
+macro pager "\e2"    "<enter-command>set pager_index_lines=10\n" # Change PIL size
+macro pager "\e3"    "<enter-command>set pager_index_lines=15\n" # Change PIL size
+macro pager "\e4"    "<enter-command>set pager_index_lines=20\n" # Change PIL size
+macro pager "\e5"    "<enter-command>set pager_index_lines=25\n" # Change PIL size
+macro pager "\e6"    "<enter-command>set pager_index_lines=30\n" # Change PIL size
+macro pager "\e7"    "<enter-command>set pager_index_lines=35\n" # Change PIL size
+macro pager "\e8"    "<enter-command>set pager_index_lines=40\n" # Change PIL size
+macro pager "\e9"    "<enter-command>set pager_index_lines=45\n" # Change PIL size
+macro pager "\e0"    "<enter-command>set pager_index_lines=0\n" # Change PIL size
+
+
+# Forward without attachments
+macro index f ":set mime_forward=no\n<forward-message>"
+macro pager f ":set mime_forward=no\n<forward-message>"
+# Forward with attachments
+macro index F ":set mime_forward=yes\n:set mime_forward_decode=no\n<forward-message>"
+macro pager F ":set mime_forward=yes\n:set mime_forward_decode=no\n<forward-message>"
+#macro index B "c = imap://bass6@webmail.llnl.gov/INBOX\n"
+macro index B "c=mbox\n"
+macro pager B "c=mbox\n"
+macro pager A "s=archive\n\n<sync-mailbox>\n"
+macro index A "s=archive\n\n<sync-mailbox>\n"
+macro pager "\Ca" ";s=archive\n\n<sync-mailbox>\n"
+macro index "\Ca" ";s=archive\n\n<sync-mailbox>\n"
+macro index A "s=archive\n\n<sync-mailbox>\n"
+macro   pager   "\Cb"   "| urlview -\n"
+macro   index   "\Cb"   "| urlview -\n"
+macro   index   "\Cb"   "| urlview -\n"
+
+# report spam
+macro index "\Cx" ":set wait_key=no\n!rm -f ~/spam.txt\n\n:set editor='/bin/touch'\ns~/spam.txt\n\n<sync-mailbox>\nmspam\n\nspam\na~/spam.txt\ny:set editor='/usr/bin/vim'\n!rm -f ~/spam.txt\n:set wait_key=yes\n"
+
+macro index "\Cy" ":set wait_key=no\n!rm -f ~/entrust.txt\ns~/entrust.txt\n\n<sync-mailbox>\n!thunderbird &\n:set wait_key=yes\n"
+
+# Ignore all headers
+ignore *
+
+# Then un-ignore the ones I want to see
+unignore From:
+unignore To:
+unignore Subject:
+unignore Date:
+unignore Organization:
+unignore Newsgroups:
+unignore CC:
+unignore BCC:
+unignore X-Mailer:
+unignore X-Junked-Because:
+
+# Now order the visable header lines
+hdr_order From: Subject: To: CC: BCC: Date: Organization: X-Mailer:
+
+# force this header field
+my_hdr Return-Path: <bass6@llnl.gov>
+
+set query_command="mutt_ldap_query '%s'"
+
+
+bind index < first-entry
+bind index > last-entry
+bind index { previous-line
+bind index } next-line
+
+bind pager < top
+bind pager > bottom
+bind pager [ half-up
+bind pager ] half-down
+
+set simple_search="~f %s | ~s %s"
+
+set certificate_file="/home/bass6/.mutt_certificate_file"
+set timeout=30
