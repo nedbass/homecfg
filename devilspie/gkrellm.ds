@@ -1,0 +1,10 @@
+(if
+        (is (application_name) "gkrellm")
+        (begin
+                (undecorate)
+                (skip_tasklist)
+                (skip_pager)
+                (below)
+                (pin)
+        )
+)

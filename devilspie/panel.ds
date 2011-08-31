@@ -1,0 +1,14 @@
+(if (is (application_name) "Top Panel") (below) )
+(if (is (application_name) "Left Panel") (below) )
+(if (is (application_name) "Right Panel") (below) )
+(if (is (application_name) "Bottom Panel") (below) )
+
+(if (is (application_name) "Left Floating Panel") (below) )
+(if (is (application_name) "Right Floating Panel") (below) )
+(if (is (application_name) "Bottom Floating Panel") (below) )
+(if (is (application_name) "Top Floating Panel") (below) )
+
+(if (is (application_name) "Left Edge Panel") (below) )
+(if (is (application_name) "Right Edge Panel") (below) )
+(if (is (application_name) "Bottom Edge Panel") (below) )
+(if (is (application_name) "Top Edge Panel") (below) )

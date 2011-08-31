@@ -1,0 +1,13 @@
+(if
+	(or 
+        	(is (application_name) "Dali Clock")
+        	(contains (application_name) "XDaliClock")
+	)
+        (begin
+                (undecorate)
+                (below)
+                (pin)
+                (skip_tasklist)
+                (skip_pager)
+        )
+)

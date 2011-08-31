@@ -1,0 +1,9 @@
+(if
+        (is (application_name) "gbiff2")
+        (begin
+                (skip_tasklist)
+                (skip_pager)
+                (below)
+                (pin)
+        )
+)
