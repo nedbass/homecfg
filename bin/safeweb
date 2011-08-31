@@ -1,0 +1,4 @@
+#!/bin/sh
+
+#exec javaws ${HOME}/bin/kavizaclient.jnlp
+exec javaws http://llnl.tucloud.com/dt/kavizaclient.jnlp

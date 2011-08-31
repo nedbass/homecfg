@@ -1,3 +1,0 @@
-# Needed for viewing inline html in Mutt
-text/html; lynx -dump -force_html %s; needsterminal; copiousoutput;
-text/html; elinks -dump -dump-charset iso-8859-15 -default-mime-type text/html %s; needsterminal; copiousoutput;

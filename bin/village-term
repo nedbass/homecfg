@@ -1,0 +1,3 @@
+#!/bin/bash
+
+gnome-terminal --full-screen -t village-term --geometry=239x70+0+0
