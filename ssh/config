@@ -1,4 +1,23 @@
-# Enable the sharing of multiple sessions over a single network connection
+Host corn
+        Hostname corn.stanford.edu
+        ControlPath none
+        user nedbass
+
+Host fd
+        Hostname firstdown.llnl.gov
+
+Host nedbass.unfuddle.com
+        ControlMaster no
+        Hostname nedbass.unfuddle.com
+        user ned
+        IdentityFile ~/.ssh/a_id_rsa_unfuddle
+
 Host *
-  ControlPath ~/.ssh/master-%r@%h:%p
-  ControlMaster auto
+        ForwardX11 yes  
+        ControlMaster auto
+        ControlPath /tmp/%h.%p.%r
+
+Host review
+        Hostname review.whamcloud.com
+        Port 29418
+        User nedbass
