@@ -1,7 +1,9 @@
 DIRS=	bash \
 	bin \
+	devilspie \
+	emacs \
 	git \
-	mutt \
+	mail \
 	screen \
 	ssh \
 	vim \
