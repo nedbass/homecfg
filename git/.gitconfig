@@ -8,6 +8,9 @@
 	conflictstyle = diff3
 [color]
 	ui = auto
+	status = auto
+	branch = auto
+	diff = auto
 [alias]
 	b = branch
 	co = commit
