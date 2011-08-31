@@ -2,7 +2,7 @@
 #
 # Dependencies: ifconfig, openconnect, screen, sudo, /etc/vpnc/vpnc-script
 
-VPN_USER=surya1
+VPN_USER=bass6
 VPN_HOST=vpn.llnl.gov
 TUN_IFAC=llnlvpn.tun0
 
