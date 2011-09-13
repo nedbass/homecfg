@@ -3,5 +3,5 @@ FILES=	.xsession \
 
 install:
 	for file in $(FILES); do \
-		install -C -m 640 $$file ~/$$file; \
+		install -C -m 750 $$file ~/$$file; \
 	done;

@@ -4,5 +4,5 @@ FILES=	.fetchmailrc \
 
 install:
 	for file in $(FILES); do \
-		install -C -m 640 $$file ~/$$file; \
+		install -C -m 600 $$file ~/$$file; \
 	done
