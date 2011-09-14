@@ -21,3 +21,9 @@ Host review
         Hostname review.whamcloud.com
         Port 29418
         User nedbass
+
+Host toss2-vm
+	Hostname 192.168.122.12
+Host sl-vm
+	Hostname 192.168.122.202
+        User ned
