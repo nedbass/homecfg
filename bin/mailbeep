@@ -1,3 +1,3 @@
 #!/bin/sh
 
-/usr/bin/xkbbell
+/usr/bin/play /usr/share/sounds/ubuntu/stereo/message-new-instant.ogg 
