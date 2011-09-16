@@ -1,0 +1,12 @@
+#!/bin/sh
+
+case "$1" in
+	start|stop)
+		rc.apache2 $1
+		rc.mysqld $1
+		;;
+	*)
+		echo "USAGE: $0 {start|stop}" >&2
+		exit 1
+		;;
+esac

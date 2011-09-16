@@ -1,0 +1,14 @@
+#!/bin/sh
+
+CONFDIR=${HOME}/etc/apache2
+export APACHE_LOG_DIR=$CONFDIR/logs
+
+case "$1" in
+	start|stop|restart)
+		apache2 -d $CONFDIR -k $1 > /dev/null 2>&1
+		;;
+	*)
+		echo "USAGE: $0 {start|stop|restart}" >&2
+		exit 1
+		;;
+esac
