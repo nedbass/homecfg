@@ -1,0 +1,23 @@
+#!/bin/sh
+
+
+DATADIR=${HOME}/var/lib/mysql
+LOGFILE=${HOME}/var/log/mysqld/err.log
+SOCKET=${HOME}/var/run/mysqld/mysqld.sock
+
+case "$1" in
+	start)
+		( mysqld_safe	--datadir=$DATADIR \
+				--log-error=$LOGFILE \
+				--socket=${HOME}/var/run/mysqld/mysqld.sock \
+				--skip-syslog
+		) < /dev/null > /dev/null 2>&1 &
+		;;
+	stop)
+		killall mysqld
+		;;
+	*)
+		echo "USAGE: $0 {start|stop}" >&2
+		exit 1
+		;;
+esac
