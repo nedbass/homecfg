@@ -24,6 +24,7 @@ alias gitb="git branch -a"
 # Pick Random element from a stream.
 alias pr="perl -ne 'if (!int rand \$s++) {\$n = \$_} END {print \$n}'"
 alias findc="find $1 -name '*.[ch]'"
+alias ibmvpn="ssh -t sl-vm sudo /opt/agns/bin/NetVPN.sh"
 
 # Misc Shortcut Commands
 alias s='ssh'
