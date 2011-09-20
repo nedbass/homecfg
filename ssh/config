@@ -29,7 +29,7 @@ Host sl-vm
 	Hostname 192.168.122.202
         User ned
 
-Host ibm
+Host bgqfs1
 	Hostname bgqfs1.rchland.ibm.com
 	User nbass
 	ProxyCommand ssh -t sl-vm nc %h %p
