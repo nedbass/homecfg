@@ -54,3 +54,11 @@ pass () {
         fi
         echo $site.$pass | openssl md5 | openssl enc -a | cut -c 1-$len
 }
+
+gg () {
+	if [ -n "$1" ] ; then
+		vim -c "GitGrep '$1'"
+	else
+		echo "Usage: gg <expression>"
+	fi
+}
