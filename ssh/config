@@ -24,6 +24,12 @@ Host review
 
 Host toss2-vm
 	Hostname 192.168.122.12
+
 Host sl-vm
 	Hostname 192.168.122.202
         User ned
+
+Host ibm
+	Hostname bgqfs1.rchland.ibm.com
+	User nbass
+	ProxyCommand ssh -t sl-vm nc %h %p
