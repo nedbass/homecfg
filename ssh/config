@@ -34,6 +34,10 @@ Host bgqfs1
 	Hostname bgqfs1.rchland.ibm.com
 	User nbass
 	ProxyCommand ssh -t sl-vm nc %h %p
+Host bgqts3sn
+	Hostname bgqts3sn.rchland.ibm.com
+	User nbass
+	ProxyCommand ssh -t sl-vm nc %h %p
 
 Host rzslic
 	ProxyCommand ssh -t rzgw nc %h 622
