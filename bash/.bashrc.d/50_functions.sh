@@ -1,6 +1,6 @@
 # Print paragraph containing $1 in file $2.
 pgrep () {
-        SEARCH_STRING=$1 perl -n00e 'print if /$ENV{SEARCH_STRING}/' $2
+	SEARCH_STRING=$1 perl -n00e 'print if /$ENV{SEARCH_STRING}/' $2
 }
 
 rpm_extract_files () { rpm2cpio "$1" | cpio -i --make-directories; }
@@ -25,8 +25,8 @@ j () {
 }
 
 restart_devilspie () {
-    killall devilspie
-    ( devilspie < /dev/null > /dev/null 2>&1 & )
+	killall devilspie
+	( devilspie < /dev/null > /dev/null 2>&1 & )
 }
 
 strerror () {
@@ -35,24 +35,24 @@ strerror () {
 
 # Compute and print unique site password using master passcode.
 pass () {
-        echo -n "passcode: "
-        stty -echo
-        read pass
-        stty echo
-        echo
-        if [ -n "$1" ] ; then
-                site=$1
-        else
-                echo -n "site: "
-                read site
-        fi
-        if [ -n "$2" ] ; then
-                len=$2
-        else
-                echo -n "length: "
-                read len
-        fi
-        echo $site.$pass | openssl md5 | openssl enc -a | cut -c 1-$len
+	echo -n "passcode: "
+	stty -echo
+	read pass
+	stty echo
+	echo
+	if [ -n "$1" ] ; then
+		site=$1
+	else
+		echo -n "site: "
+		read site
+	fi
+	if [ -n "$2" ] ; then
+		len=$2
+	else
+		echo -n "length: "
+		read len
+	fi
+	echo $site.$pass | openssl md5 | openssl enc -a | cut -c 1-$len
 }
 
 gg () {
