@@ -62,3 +62,15 @@ gg () {
 		echo "Usage: gg <expression>"
 	fi
 }
+
+map () {
+	local f=$1
+	local x
+
+	shift
+	while [ $# -gt 0 ] ; do
+		x=$1
+		shift
+		$f $x
+	done
+}
