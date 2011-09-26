@@ -25,6 +25,8 @@ Host review
 Host toss2-vm
 	Hostname 192.168.122.12
 	PreferredAuthentications publickey,password
+Host chaos4-vm
+	Hostname 192.168.122.211
 
 Host sl-vm
 	Hostname 192.168.122.202
