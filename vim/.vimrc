@@ -93,6 +93,7 @@ set guifont=Courier\ New:h12
 " whitespace in red
 " See also: http://vim.wikia.com/wiki/Highlight_unwanted_spaces
 if has("autocmd")
+	let w:hlws = 1
 	highlight ExtraWhitespace ctermbg=red guibg=red
 	match ExtraWhitespace /\s\+$/
 	autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
@@ -105,10 +106,78 @@ endif
 " See also:
 " http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns/3765575#3765575
 if exists('+colorcolumn')
-	 set colorcolumn=80
+	set colorcolumn=80
 elseif exists('*matchadd')
 	autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
+
+function! ToggleSpell()
+	if &spell == 0
+		set spell
+	else
+		set nospell
+	endif
+endfunction
+
+function! ToggleLongLine()
+	if exists('+colorcolumn')
+		if &colorcolumn > 0
+			set colorcolumn=0
+		else
+			set colorcolumn=80
+		endif
+	elseif exists('*matchadd') && has("autocmd")
+		if w:m2 == 0
+			let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+		else
+			let w:m2=matchdelete(w:m2)
+		endif
+	endif
+endfunction
+
+function! ToggleLineNumbers()
+	if &nu == 0
+		set nu
+	else
+		set nonu
+	endif
+endfunction
+
+function! ToggleSyntax()
+	if exists("g:syntax_on")
+		syntax off
+	else
+		syntax enable
+	endif
+endfunction
+
+function! ToggleList()
+	if &list == 0
+		set list
+	else
+		set nolist
+	endif
+endfunction
+
+function! ToggleExtraWhitespace()
+	if w:hlws == 0
+		highlight ExtraWhitespace ctermbg=red guibg=red
+		match ExtraWhitespace /\s\+$/
+		let w:hlws = 1
+	else
+		match ExtraWhitespace //
+		let w:hlws = 0
+	endif
+endfunction
+
+nmap <silent>  ;s  :call ToggleSyntax()<CR>
+
+map ;e :call ToggleExtraWhitespace()<CR>
+map ;s :call ToggleSpell()<CR>
+map ;t :call ToggleList()<CR>
+map ;l :call ToggleLongLine()<CR>
+map ;n :call ToggleLineNumbers()<CR>
+map ;x :call ToggleSyntax()<CR>
 
 " ##############
 " # End .vimrc #
