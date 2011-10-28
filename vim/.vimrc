@@ -172,12 +172,19 @@ endfunction
 
 nmap <silent>  ;s  :call ToggleSyntax()<CR>
 
+" Toggles
 map ;e :call ToggleExtraWhitespace()<CR>
 map ;s :call ToggleSpell()<CR>
 map ;t :call ToggleList()<CR>
 map ;l :call ToggleLongLine()<CR>
 map ;n :call ToggleLineNumbers()<CR>
 map ;x :call ToggleSyntax()<CR>
+
+" Fast Window navigation
+map <C-h> <C-w><C-h>
+map <C-j> <C-w><C-j>
+map <C-k> <C-w><C-k>
+map <C-l> <C-w><C-l>
 
 " ##############
 " # End .vimrc #
