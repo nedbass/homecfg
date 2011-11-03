@@ -1,7 +1,9 @@
 Host corn
         Hostname corn.stanford.edu
+        ForwardAgent no
         ControlPath none
         user nedbass
+        ProxyCommand ssh -t rzgw nc %h %p
 
 Host fd
         Hostname firstdown.llnl.gov
@@ -13,7 +15,7 @@ Host nedbass.unfuddle.com
         IdentityFile ~/.ssh/a_id_rsa_unfuddle
 
 Host *
-        ForwardX11 yes  
+        ForwardX11 yes
         ControlMaster auto
         ControlPath /tmp/%h.%p.%r
 
@@ -24,11 +26,11 @@ Host review
 
 Host toss2-vm
         Hostname 192.168.122.12
-        PreferredAuthentications publickey,password
 Host chaos4-vm
         Hostname 192.168.122.211
-        PreferredAuthentications publickey,password
-
+Host oneiric-vm
+        Hostname 192.168.122.235
+        User ned
 Host sl-vm
         Hostname 192.168.122.202
         User ned
@@ -42,9 +44,15 @@ Host bgqts3sn
         User nbass
         ProxyCommand ssh -t sl-vm nc %h %p
 
-Host rzslic
+Host !rzgw rz*
         ProxyCommand ssh -t rzgw nc %h 622
-Host rzzeus
-        ProxyCommand ssh -t rzgw nc %h 622
-Host rzalastor
-        ProxyCommand ssh -t rzgw nc %h 622
+
+#Management nodes
+Host *i
+        ProxyCommand ssh -t rzgw nc %h %p
+
+#IBM BGQ32
+Host bcssh
+        ProxyCommand ssh -t rzgw nc %h %p
+        User nbass
+        Hostname bcssh.rochester.ibm.com
