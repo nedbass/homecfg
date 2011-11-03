@@ -1,6 +1,16 @@
+Host *
+        ForwardAgent no
+        ForwardX11 yes
+        ControlMaster auto
+        ControlPath /tmp/%h.%p.%r
+
+Host review
+        Hostname review.whamcloud.com
+        Port 29418
+        User nedbass
+
 Host corn
         Hostname corn.stanford.edu
-        ForwardAgent no
         ControlPath none
         user nedbass
         ProxyCommand ssh -t rzgw nc %h %p
@@ -13,16 +23,6 @@ Host nedbass.unfuddle.com
         Hostname nedbass.unfuddle.com
         user ned
         IdentityFile ~/.ssh/a_id_rsa_unfuddle
-
-Host *
-        ForwardX11 yes
-        ControlMaster auto
-        ControlPath /tmp/%h.%p.%r
-
-Host review
-        Hostname review.whamcloud.com
-        Port 29418
-        User nedbass
 
 Host toss2-vm
         Hostname 192.168.122.12
