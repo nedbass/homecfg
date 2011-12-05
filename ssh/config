@@ -56,3 +56,13 @@ Host bcssh
         ProxyCommand ssh -t rzgw nc %h %p
         User nbass
         Hostname bcssh.rochester.ibm.com
+
+Host *.stanford.edu
+        ProxyCommand ssh -t rzgw nc %h %p
+        User nedbass
+
+Host nedbass.unfuddle.com
+        ProxyCommand ssh -t rzgw nc %h %p
+
+Host github.com
+        ProxyCommand ssh -t rzgw nc %h %p
