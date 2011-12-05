@@ -5,5 +5,5 @@ use Getopt::Std;
 our( $opt_f );
 getopts('f');
 my @a = $opt_f ? map {chr} 33..126 : ("a".."z","A".."Z",0..9);
-print map {$a[rand 36]} 1..$ARGV[0]||8;
+print map {$a[rand scalar @a]} 1..$ARGV[0]||8;
 print "\n";
