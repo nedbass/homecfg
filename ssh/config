@@ -66,3 +66,6 @@ Host nedbass.unfuddle.com
 
 Host github.com
         ProxyCommand ssh -t rzgw nc %h %p
+
+Host tyche
+        ProxyCommand ssh -t rzgw nc %h %p
