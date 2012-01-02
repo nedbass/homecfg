@@ -1,0 +1,30 @@
+#!/bin/sh
+
+exec 2>/dev/null
+
+XDARGS="-transparent -fullscreen -transparent -cycle -title flashclock"
+XDARGS="$XDARGS -builtin4"
+
+if [ x$1 = "x-d" ] ; then
+	XDARGS="$XDARGS -showdate"
+else
+	XDARGS="$XDARGS -24"
+fi
+
+DPSCRIPT=`mktemp`
+echo '
+(if (is (application_name) "flashclock")
+	(begin
+		(undecorate)
+		(above)
+		(focus)
+		(pin)))
+' > $DPSCRIPT
+xdaliclock $XDARGS &
+XDPID=$!
+devilspie -a $DPSCRIPT &
+DPPID=$!
+sleep 3
+kill $XDPID
+kill $DPPID
+rm -f $DPSCRIPT

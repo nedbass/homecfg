@@ -1,5 +1,5 @@
 #!/bin/bash
-gnome-terminal --geometry 119x35+0+0  &
-gnome-terminal --geometry 118x35+970+0  &
-gnome-terminal --geometry 119x34+0+611  &
-gnome-terminal --geometry 118x34+970+611  &
+gnome-terminal --geometry 137x39+0+0  &
+gnome-terminal --geometry 136x39+970+0  &
+gnome-terminal --geometry 137x38+0+611  &
+gnome-terminal --geometry 136x38+970+611  &
