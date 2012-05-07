@@ -8,11 +8,6 @@ Host review
         Hostname review.whamcloud.com
         Port 29418
         User nedbass
-
-Host corn
-        Hostname corn.stanford.edu
-        ControlPath none
-        user nedbass
         ProxyCommand ssh -t rzgw nc %h %p
 
 Host fd
@@ -26,6 +21,7 @@ Host nedbass.unfuddle.com
 
 Host toss2-vm
         Hostname 192.168.122.12
+        ForwardAgent yes
 Host chaos4-vm
         Hostname 192.168.122.211
 Host oneiric-vm
@@ -44,11 +40,10 @@ Host bgqts3sn
         User nbass
         ProxyCommand ssh -t sl-vm nc %h %p
 
-Host !rzgw rz*
-        ProxyCommand ssh -t rzgw nc %h 622
-
 #Management nodes
 Host *i
+        ProxyCommand ssh -t rzgw nc %h %p
+Host *j
         ProxyCommand ssh -t rzgw nc %h %p
 
 #IBM BGQ32
@@ -68,4 +63,11 @@ Host github.com
         ProxyCommand ssh -t rzgw nc %h %p
 
 Host tyche
+        ProxyCommand ssh -t rzgw nc %h %p
+
+Host rzzeus
+        ProxyCommand ssh -t rzgw nc %h %p
+Host rzdawndev
+        ProxyCommand ssh -t rzgw nc %h %p
+Host rzslic
         ProxyCommand ssh -t rzgw nc %h %p
