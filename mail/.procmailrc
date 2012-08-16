@@ -14,6 +14,14 @@ LOGFILE=$MAILDIR/procmail.log   #recommended
 rootmail
 
 :0:
+* ^From:.*jira@whamcloud.com
+jira
+
+:0:
+* ^From:.*bugzilla-daemon@chaos.llnl.gov
+bugzilla-daemon
+
+:0:
 * ^(Sender|From): "?owner-\/[^@]+
 $MATCH
 

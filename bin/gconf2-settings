@@ -1,23 +1,22 @@
 #!/bin/sh
 
 gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_1 "<Control><Alt>y"
-gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_10 "<Control><Alt>u"
-gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_11 "<Control><Alt>4"
-gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_12 "<Control><Alt>8"
 gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_2 "<Control><Alt>2"
 gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_3 "<Control><Alt>6"
 gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_4 "<Control><Alt><Shift>Left"
 gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_5 "<Control><Alt><Shift>Right"
 gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_6 "<Control><Alt><Shift>Up"
 gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_7 "<Control><Alt><Shift>Down"
+gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_15 "<Control><Alt><Shift>n"
 gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_8 "<Control><Alt>g"
 gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_9 "<Control><Alt>t"
+gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_10 "<Control><Alt>u"
+gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_11 "<Control><Alt>4"
+gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_12 "<Control><Alt>8"
 gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_13 "<Control><Alt>d"
+gconftool-2 --type string --set /apps/metacity/global_keybindings/run_command_14 "<Control><Alt>i"
 
 gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_1 "gnome-terminal --full-screen"
-gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_10 "gnome-terminal --full-screen --geometry=1920x1200+1920+0"
-gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_11 "$HOME/bin/4t"
-gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_12 "$HOME/bin/8t"
 gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_2 "$HOME/bin/2t"
 gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_3 "$HOME/bin/6t"
 gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_4 "/usr/bin/xdotool mousemove_relative -- -200 0"
@@ -26,7 +25,12 @@ gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_6 "/u
 gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_7 "/usr/bin/xdotool mousemove_relative --  0 200"
 gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_8 "gnome-terminal"
 gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_9 "${HOME}/bin/flash_clock"
+gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_10 "gnome-terminal --full-screen --geometry=+1920+0"
+gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_11 "$HOME/bin/4t"
+gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_12 "$HOME/bin/8t"
 gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_13 "${HOME}/bin/flash_clock -d"
+gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_14 "gnome-terminal --full-screen --geometry=+3840+0"
+gconftool-2 --type string --set /apps/metacity/keybinding_commands/command_15 "firefox"
 
 gconftool-2 --type bool --set /apps/nautilus/desktop/computer_icon_visible false
 gconftool-2 --type bool --set /apps/nautilus/desktop/home_icon_visible false
