@@ -14,6 +14,7 @@ alias mv='mv -i'
 alias ls='ls --human-readable --classify --color=always'
 alias less="less -MXR"
 alias view="vim -R"
+alias tmux="tmux -2"
 
 
 # New Commands
