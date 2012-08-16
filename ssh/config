@@ -76,3 +76,5 @@ Host *.amazonaws.com
         ProxyCommand ssh -t rzgw nc %h %p
 Host *.github.com
         ProxyCommand ssh -t rzgw nc %h %p
+Host vulcan
+        ProxyCommand ssh -t rzgw nc %h %p
