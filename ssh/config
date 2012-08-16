@@ -3,6 +3,7 @@ Host *
         ForwardX11 yes
         ControlMaster auto
         ControlPath /tmp/%h.%p.%r
+        GSSAPIAuthentication no
 
 Host review
         Hostname review.whamcloud.com
@@ -70,4 +71,8 @@ Host rzzeus
 Host rzdawndev
         ProxyCommand ssh -t rzgw nc %h %p
 Host rzslic
+        ProxyCommand ssh -t rzgw nc %h %p
+Host *.amazonaws.com
+        ProxyCommand ssh -t rzgw nc %h %p
+Host *.github.com
         ProxyCommand ssh -t rzgw nc %h %p
