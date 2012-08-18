@@ -174,6 +174,7 @@ nmap <silent>  ;s  :call ToggleSyntax()<CR>
 
 " Toggles
 map ;e :call ToggleExtraWhitespace()<CR>
+map ;E :%s/[ \t]*$//g<CR>
 map ;s :call ToggleSpell()<CR>
 map ;t :call ToggleList()<CR>
 map ;l :call ToggleLongLine()<CR>
