@@ -52,7 +52,8 @@ pass () {
 		echo -n "length: "
 		read len
 	fi
-	echo $site.$pass | openssl md5 | openssl enc -a | cut -c 1-$len
+	echo $site.$pass | openssl sha1 -binary| openssl enc -a |
+		cut -c 1-$len | tr -d =
 }
 
 gg () {
