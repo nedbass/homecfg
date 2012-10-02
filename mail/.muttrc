@@ -16,7 +16,7 @@ alias pam Pam Hamilton <pgh@llnl.gov>
 alias pgh Pam Hamilton <pgh@llnl.gov>
 alias py Pythagoras Watson <py@llnl.gov>
 
-#auto_view text/html
+auto_view text/html
 
 color  hdrdefault      green           default
 color  header          brightyellow    default   "^from:"
