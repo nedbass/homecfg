@@ -22,8 +22,16 @@ jira
 bugzilla-daemon
 
 :0:
-* ^(Sender|From): "?owner-\/[^@]+
-$MATCH
+* ^From: lstest-mail@.*
+lstest-mail
+
+:0:
+* ^From:.*review.whamcloud.com
+gerrit
+
+:0:
+* ^(Sender|From):? \/[a-z0-9-]+-owner@
+`echo $MATCH | sed "s/-owner@//"`
 
 :0:
 * ^x-beenthere: lustre-devel@lists.lustre.org
