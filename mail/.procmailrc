@@ -19,7 +19,7 @@ jira
 
 :0:
 * ^From:.*notifications@github.com
-jira
+github
 
 :0:
 * ^From:.*bugzilla-daemon@chaos.llnl.gov
