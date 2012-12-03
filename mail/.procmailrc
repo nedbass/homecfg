@@ -18,12 +18,16 @@ rootmail
 jira
 
 :0:
+* ^From:.*notifications@github.com
+jira
+
+:0:
 * ^From:.*bugzilla-daemon@chaos.llnl.gov
 bugzilla-daemon
 
 :0:
-* ^From: lstest-mail@.*
-lstest-mail
+* ^Subject: \[ltest-mail\].*
+ltest-mail
 
 :0:
 * ^From:.*review.whamcloud.com
