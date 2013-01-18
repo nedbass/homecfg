@@ -30,6 +30,10 @@ bugzilla-daemon
 ltest-mail
 
 :0:
+* ^Subject: \[CZ JIRA\].*
+czjira
+
+:0:
 * ^From:.*review.whamcloud.com
 gerrit
 
@@ -60,7 +64,3 @@ zfs-discuss
 :0:
 * ^x-beenthere: zfs-devel@zfsonlinux.org
 zfs-devel
-
-:0:
-* ^x-beenthere: lustre-21@googlegroups.com
-lustre-21
