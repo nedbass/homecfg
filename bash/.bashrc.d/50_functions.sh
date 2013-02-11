@@ -35,6 +35,7 @@ strerror () {
 
 # Compute and print unique site password using master passcode.
 pass () {
+	local pass
 	echo -n "passcode: "
 	stty -echo
 	read pass

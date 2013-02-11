@@ -30,6 +30,10 @@ bugzilla-daemon
 ltest-mail
 
 :0:
+* ^Subject: (Re: )?\[zfs\].*
+illumos-zfs
+
+:0:
 * ^Subject: \[CZ JIRA\].*
 czjira
 
