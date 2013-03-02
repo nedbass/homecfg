@@ -3,7 +3,7 @@
 exec 2>/dev/null
 
 XDARGS="-transparent -fullscreen -transparent -cycle -title flashclock"
-XDARGS="$XDARGS -builtin4"
+XDARGS="$XDARGS -builtin3"
 
 if [ x$1 = "x-d" ] ; then
 	XDARGS="$XDARGS -showdate"
