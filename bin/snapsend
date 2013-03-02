@@ -1,0 +1,187 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+use Getopt::Std;
+use File::Basename;
+use POSIX qw(strftime);
+
+my $fulls = 3;
+my $incrementals = 30;
+my $dataset;
+my $prefix = "";
+my $recip = "";
+my @destdirs;
+my $datepat = '\d{14}';
+my $fulltag = "__F__";
+my $incrtag = "__I__";
+my $snapbase;
+my $sendbase;
+
+sub snaplist() {
+	my @snaps;
+	open(ZFS, "zfs list -t snapshot -H -S creation |")
+		|| die("Error listing snapshots\n");
+	while (my $line = <ZFS>) {
+		if ($line =~ m,^($snapbase\S*)\s,) {
+			push @snaps, $1;
+		}
+	}
+	close(ZFS) || die "Error closing pipe\n";
+	return @snaps;
+}
+
+sub purge() {
+	$fulls == 0 && return;
+
+	foreach my $dir (@destdirs) {
+		my $num_fulls = 0;
+		my @files = glob("$dir/*$sendbase*");
+		# We assume that reverse-lexical sort of filenames
+		# processes snapshots in newest-to-oldest order.
+		foreach my $send (sort { $b cmp $a } @files) {
+			if (basename($send) =~ /^$datepat$fulltag/) {
+				if (++$num_fulls == $fulls) {
+					next;
+				}
+			}
+			if (basename($send) =~ /^${datepat}__[FI]__/ &&
+			    $num_fulls >= $fulls) {
+				unlink($send) ||
+					die "Failed to unlink $send\n";
+			}
+		}
+	}
+}
+
+sub usage() {
+	print <<EOF;
+Usage: snapsend [-h]
+       snapsend <-d dataset> [-i incrementals]
+
+  -h    print usage summary and exit
+  -d    specify name of dataset to send
+  -f    number of full snapshots to keep [default=$fulls, 0 means no limit]
+  -r    specify gpg user id to encrypt for
+  -s    comma-separated list of directories to store snaps in
+  -i    number of incremental snapshots between fulls [default=$incrementals]
+  -p    prefix of snapshot (i.e. zfs-auto-snap_daily)
+EOF
+	exit 0
+}
+
+sub getargs
+{
+	our($opt_h, $opt_d, $opt_f, $opt_i, $opt_p, $opt_r, $opt_s);
+	getopts('hd:f:i:p:r:s:');
+	if (defined $opt_h) {
+		usage();
+	}
+	if (defined $opt_f) {
+		$fulls = int($opt_f);
+	}
+	if (defined $opt_i) {
+		$incrementals = int($opt_i);
+	}
+	if (defined $opt_p) {
+		$prefix = $opt_p;
+	}
+	if (defined $opt_r) {
+		$recip = $opt_r;
+	}
+	unless (defined $opt_d) {
+		die "-d is a required argument\n";
+	}
+	unless (defined $opt_s) {
+		die "-s is a required argument\n";
+	}
+	$dataset = $opt_d;
+	@destdirs = split(/,/, $opt_s);
+}
+
+MAIN: {
+	getargs();
+	my @snaps;
+	my %dirsnaps;
+	my %guidmap;
+	my $newestsnap;
+	my $compresscmd = 'bzip2';
+	my $encryptcmd = "gpg -e -r $recip";
+
+	$snapbase = "$dataset\@$prefix";
+	$sendbase = $snapbase;
+	$sendbase =~ s/\//_/g;
+
+	@snaps = snaplist();
+	if (scalar @snaps == 0) {
+		exit 0;
+	}
+	$newestsnap = $snaps[0];
+
+	DIR: foreach my $dir (@destdirs) {
+		my $num_incs = 0;
+		my $i;
+		my $parent_idx = -1;
+		my $full_idx = -1;
+		my $newsend = $newestsnap;
+		$newsend =~ s/\//_/g;
+		my $sendcmd;
+
+		my @files = glob("$dir/*$sendbase*");
+		foreach my $send (sort { $b cmp $a } @files) {
+			$send = basename($send);
+			$send =~ s/\.gpg$//g;
+			$send =~ s/\.bz2$//g;
+			if ($send =~ /^$datepat$fulltag/) {
+				$send =~ s/^$datepat$fulltag//;
+				$dirsnaps{$dir}{fulls}{$send} = 1;
+			} elsif ($send =~ /^$datepat$incrtag/) {
+				$send =~ s/$datepat$incrtag//;
+				$dirsnaps{$dir}{incrs}{$send} = 1;
+			}
+			if ($send eq $newsend) {
+				next DIR;
+			}
+		}
+		for ($i=1; $i < scalar @snaps && $full_idx == -1; $i++) {
+			my $tmpsend = $snaps[$i];
+			$tmpsend =~ s/\//_/g;
+			if (exists $dirsnaps{$dir}{fulls}{$tmpsend}) {
+				$full_idx = $i;
+			} elsif (exists $dirsnaps{$dir}{incrs}{$tmpsend}) {
+				$num_incs++;
+			} else {
+				next;
+			}
+			if ($parent_idx == -1) {
+				$parent_idx = $i;
+			}
+		}
+
+		my $datecmd = "zfs get -H -o value -p creation $newestsnap";
+		my $date = `$datecmd`;
+		$? == 0 || die "Failed to execute: $datecmd\n";
+		$date = strftime("%Y%m%d%H%M%S", localtime($date));
+		if ($num_incs < $incrementals && $full_idx != -1) {
+			$newsend = "${date}${incrtag}${newsend}";
+			$sendcmd = "zfs send -RI $snaps[$parent_idx] "
+					. "$newestsnap";
+		} else {
+			$newsend = "${date}${fulltag}${newsend}";
+			$sendcmd = ("zfs send -R $newestsnap")
+		}
+		my $dest = "$dir/$newsend";
+		if ($compresscmd ne "") {
+			$sendcmd = "$sendcmd | $compresscmd";
+			$dest = "$dest.bz2";
+		}
+		if ($recip ne "") {
+			$sendcmd = "$sendcmd | $encryptcmd";
+			$dest = "$dest.gpg";
+		}
+		system("$sendcmd > $dest") == 0 ||
+			die "Failed to execute: $sendcmd > $dest\n";
+	}
+
+	purge();
+}
