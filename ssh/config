@@ -72,6 +72,8 @@ Host rzdawndev
         ProxyCommand ssh -t rzgw nc %h %p
 Host rzslic
         ProxyCommand ssh -t rzgw nc %h %p
+Host rzuseq
+        ProxyCommand ssh -t rzgw nc %h %p
 Host *.amazonaws.com
         ProxyCommand ssh -t rzgw nc %h %p
 Host *.github.com
