@@ -76,3 +76,11 @@ map () {
 		$f $x
 	done
 }
+
+# Convert time in DD:HH:MM:SS format to seconds.
+t2s() {
+	echo $1 | tr : ' ' | xargs -n1 | tac | xargs | (
+		read s m h d
+		echo $(( $s + ${m:-0}*60 + ${h:-0}*3600 + ${d:-0}*86400))
+	)
+}
