@@ -14,7 +14,7 @@ LOGFILE=$MAILDIR/procmail.log   #recommended
 rootmail
 
 :0:
-* ^From:.*jira@whamcloud.com
+* ^From:.*hpdd-jira@intel.com
 jira
 
 :0:
