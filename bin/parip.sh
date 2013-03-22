@@ -16,13 +16,15 @@ done
 echo
 echo "Recording now!"
 
+amixer sset Master 90%
+
 src="$(pactl list | grep -A2 '^Source #' | grep 'Name: .*\.monitor$' | awk '{print $NF}' | tail -n1)"
 dest="$1"
 shift
 secs="$(( `t2s $1` + 15))"
 shift
 parec -d "$src" --rate=44100 --format=s16le --channels=1 /dev/stdout | \
-	lame -V 4 -r -s '44.1' --signed --bitwidth 16 --little-endian -m m "$@" /dev/stdin "$dest" &
+	lame -r -s '44.1' --signed --bitwidth 16 --little-endian -m m "$@" /dev/stdin "$dest" &
 pid=$!
 sleep $secs
 kill $pid
