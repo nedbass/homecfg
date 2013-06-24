@@ -38,7 +38,7 @@ illumos-zfs
 czjira
 
 :0:
-* ^From:.*review.whamcloud.com
+* ^From:.*hpdd-review@intel.com
 gerrit
 
 :0:
@@ -48,6 +48,10 @@ gerrit
 :0:
 * ^x-beenthere: lustre-devel@lists.lustre.org
 lustre-org-devel
+
+:0:
+* ^x-beenthere: hpdd-ff-all@lists.01.org
+ff
 
 :0:
 * ^x-beenthere: hpdd-discuss@lists.01.org

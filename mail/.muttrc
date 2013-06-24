@@ -118,3 +118,6 @@ set simple_search="~f %s | ~s %s"
 
 set certificate_file="/home/bass6/.mutt_certificate_file"
 set timeout=30
+
+set mime_forward=yes
+set mime_forward_rest=yes
