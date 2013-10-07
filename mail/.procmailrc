@@ -50,6 +50,10 @@ gerrit
 lustre-org-devel
 
 :0:
+* ^x-beenthere: developer@open-zfs.org
+openzfs
+
+:0:
 * ^x-beenthere: hpdd-ff-all@lists.01.org
 ff
 
