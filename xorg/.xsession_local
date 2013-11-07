@@ -1,35 +1,21 @@
 #!/bin/sh
 
-ssh-add
-
 set -x
 
 HOSTNAME=`uname -n`
 
-if echo $HOSTNAME | grep -q llnl\.gov ; then
-	export PATH=${PATH}:${HOME}/sw/rhews-3.0/bin:${HOME}/sw/rhews-5.2/bin
-	export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HOME}/sw/rhews-3.0/lib:${HOME}/sw/rhews-5.2/lib
-	export MANPATH=${MANPATH}:${HOME}/sw/rhews-3.0/man:${HOME}/sw/rhews-5.2/man
-	export PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:${HOME}/sw/rhews-5.2/lib/pkgconfig:${HOME}/sw/rhews-3.0/lib/pkgconfig
-fi
-
 xset b off
 
-if [ $HOSTNAME == 'auk39.llnl.gov' ] ; then
+if [ "$HOSTNAME" = "twist" ] ; then
 	# System resource monitor.
-	gkrellm -geometry +1920+0&
-
-	# Mailbox monitor.
-	gbiff2 -n &
+	gkrellm -geometry +1809+0&
 
 	# Window matching utility, see ~/.devilspie/*.ds
 	devilspie &
 
 	# Display big date and time in right corners of right monitor.
-	xdaliclock  -transparent -fg yellow  -geometry 438x92-0+7 &
-	xdaliclock -transparent -fg green -geometry 438x92-0-0 -showdate &
+	xdaliclock  -transparent -fg yellow  -geometry -0+7 &
+	xdaliclock -transparent -fg green -geometry -0-0 -showdate &
 fi
 
-gnome-session
-
-ssh-add -D
+gnome-session-fallback

@@ -9,58 +9,11 @@ Host review
         Hostname review.whamcloud.com
         Port 29418
         User nedbass
-        ProxyCommand ssh -t rzgw nc %h %p
-
-Host fd
-        Hostname firstdown.llnl.gov
-
-Host nedbass.unfuddle.com
-        ControlMaster no
-        Hostname nedbass.unfuddle.com
-        user ned
-        IdentityFile ~/.ssh/a_id_rsa_unfuddle
-
-Host toss2-vm
-        Hostname 192.168.122.12
-        ForwardAgent yes
-Host chaos4-vm
-        Hostname 192.168.122.211
-Host oneiric-vm
-        Hostname 192.168.122.235
-        User ned
-Host sl-vm
-        Hostname 192.168.122.202
-        User ned
-
-Host bgqfs1
-        Hostname bgqfs1.rchland.ibm.com
-        User nbass
-        ProxyCommand ssh -t sl-vm nc %h %p
-Host bgqts3sn
-        Hostname bgqts3sn.rchland.ibm.com
-        User nbass
-        ProxyCommand ssh -t sl-vm nc %h %p
 
 #Management nodes
 Host *i
         ProxyCommand ssh -t rzgw nc %h %p
 Host *j
-        ProxyCommand ssh -t rzgw nc %h %p
-
-#IBM BGQ32
-Host bcssh
-        ProxyCommand ssh -t rzgw nc %h %p
-        User nbass
-        Hostname bcssh.rochester.ibm.com
-
-Host *.stanford.edu
-        ProxyCommand ssh -t rzgw nc %h %p
-        User nedbass
-
-Host nedbass.unfuddle.com
-        ProxyCommand ssh -t rzgw nc %h %p
-
-Host github.com
         ProxyCommand ssh -t rzgw nc %h %p
 
 Host tyche
@@ -73,10 +26,6 @@ Host rzdawndev
 Host rzslic
         ProxyCommand ssh -t rzgw nc %h %p
 Host rzuseq
-        ProxyCommand ssh -t rzgw nc %h %p
-Host *.amazonaws.com
-        ProxyCommand ssh -t rzgw nc %h %p
-Host *.github.com
         ProxyCommand ssh -t rzgw nc %h %p
 Host vulcan
         ProxyCommand ssh -t rzgw nc %h %p
